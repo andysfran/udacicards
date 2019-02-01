@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from "react-navigation";
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import Routes from './Routes';
 
-import reducers from './storeSettings/reducers';
+import reduxConfig from './storeSettings/reducers';
 
-const store = createStore(reducers);
+import { setLocalNotification } from './utils/helper'
 
-export default () => (
-  <Provider store={store}>
-    <Routes />
-  </Provider>
-)
+const { store, persistor } = reduxConfig();
+
+export default class App extends Component {
+
+  componentDidMount() {
+    setLocalNotification()
+  }
+
+  render() {
+    return (
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Routes />
+        </PersistGate>
+      </Provider>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   container: {

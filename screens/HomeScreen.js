@@ -44,7 +44,9 @@ class HomeScreen extends PureComponent {
           renderItem={this.renderItem}
           style={{ flex: 1 }}
         />
-        <TouchableOpacity style={styles.btnPlus}><Text style={styles.textFab}>+</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.btnPlus} onPress={() => this.props.navigation.navigate('NewDeck')}>
+          <Text style={styles.textFab}>+</Text>
+        </TouchableOpacity>
       </DefaultContainer>
     );
   }

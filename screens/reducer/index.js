@@ -1,14 +1,17 @@
+import * as types from '../actions/types'
+import {
+  addDeck,
+  addQuestion
+} from './reducers'
 
-const initialState = [
-  {
-    key: 'CardTest',
-    title: 'CardTest',
-    questions: [] // [ { question: 'Mario is the best game ever?', answer: 'YESS!!!', isCorrect: true } ]
-  }
-];
+const initialState = [];
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
+    case types.ADD_DECK:
+      return addDeck(state, payload)
+    case types.ADD_QUESTION:
+      return addQuestion(state, payload)
     default:
       return state;
   }
