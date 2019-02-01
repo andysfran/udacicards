@@ -30,7 +30,8 @@ class NewDeck extends PureComponent {
     const { name } = this.state
     if (name.trim() !== "") {
       this.props.addDeck(name)
-      Alert.alert('Wee!', 'Successfully added!', [{text: 'Go back', onPress: () => this.props.navigation.goBack()}])
+      const length = this.props.list.length
+      Alert.alert('Wee!', 'Successfully added!', [{text: 'Ok!', onPress: () => this.props.navigation.replace("Details", { idDeck: length })}])
     } else {
       Alert.alert('Hey!', 'You cannot create a deck with empty name!');
     }
@@ -60,4 +61,8 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({ addDeck }, dispatch);
 
-export default connect(null, mapDispatchToProps)(NewDeck);
+const mapStateToProps = (state) => ({
+  list: state.decksReducer
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewDeck);
