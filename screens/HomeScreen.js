@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, FlatList, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import DefaultContainer from '../components/DefaultContainer';
 import DeckItem from '../components/DeckItem';
 
-class HomeScreen extends PureComponent {
+class HomeScreen extends Component {
 
   static navigationOptions = {
     title: 'Decks',
